@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var helmet = require('helmet');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -9,6 +10,7 @@ app.use(bodyParser.json());
 
 app.use(express.json());
 app.use(cors());
+app.use(helmet()); // 防止各項攻擊
 
 app.get('/home', function(req, res){
     res.writeHead(200,{
